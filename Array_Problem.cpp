@@ -9,31 +9,30 @@ Explanation:
 - Time Complexity: O(n*m)
 
 #include <iostream>
+#include <vector>
 using namespace std;
 class Solution {
 public:
-    void findIntersectionValues(int nums1[], int n, int nums2[], int m) {
-        int answer1 = 0, answer2 = 0;
-        for (int i = 0; i < n; i++) {
-            int found = 0;
-            for (int j = 0; j < m; j++) {
+    vector<int> findIntersectionValues(vector<int>& nums1, vector<int>& nums2) {
+        int answer1 = 0;
+        int answer2 = 0;
+        for (int i = 0; i < nums1.size(); i++) {
+            for (int j = 0; j < nums2.size(); j++) {
                 if (nums1[i] == nums2[j]) {
-                    found = 1;
-                    break;
+                    answer1++;
+                    break; 
                 }
             }
-            if (found) answer1++;
         }
-        for (int i = 0; i < m; i++) {
-            int found = 0;
-            for (int j = 0; j < n; j++) {
+        for (int i = 0; i < nums2.size(); i++) {
+            for (int j = 0; j < nums1.size(); j++) {
                 if (nums2[i] == nums1[j]) {
-                    found = 1;
+                    answer2++;
                     break;
                 }
             }
-            if (found) answer2++;
         }
-        cout << "Result: [" << answer1 << ", " << answer2 << "]" << endl;
+        return {answer1, answer2};
     }
 };
+
