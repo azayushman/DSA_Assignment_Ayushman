@@ -41,6 +41,15 @@ public:
             first = first->next;
             second = second->next;
         }
+        curr = prev;
+        prev = NULL;
+        while (curr != NULL) {
+            nextNode = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nextNode;
+        }
+        slow->next = prev;
         return palindrome;
     }
 };
